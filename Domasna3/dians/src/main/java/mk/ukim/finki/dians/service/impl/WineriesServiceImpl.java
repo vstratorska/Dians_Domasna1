@@ -13,7 +13,9 @@ import java.util.Optional;
 public class WineriesServiceImpl implements WineriesService {
     private final WineriesRepository wineriesRepository;
 
-    public WineriesServiceImpl(WineriesRepository wineriesRepository) {this.wineriesRepository = wineriesRepository;}
+    public WineriesServiceImpl(WineriesRepository wineriesRepository) {
+        this.wineriesRepository = wineriesRepository;
+    }
 
 
     @Override

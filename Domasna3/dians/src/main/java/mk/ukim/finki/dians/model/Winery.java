@@ -1,11 +1,15 @@
 package mk.ukim.finki.dians.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import mk.ukim.finki.dians.model.enumeration.Region;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Winery {
 
     @Id

@@ -5,10 +5,15 @@
     <title>Find My Fine</title>
 </head>
 <body>
-<h1>TUKA SUM</h1>
+
 <form th:method="post" th:action="@{'/findmywine/region'}">
-    <input type="text" id="region" name="region">
+    <input type="text" id="region" name="region" placeholder="Stavi region">
     <input type="submit">
 </form>
+
+<form th:method="post" th:action="@{'/findmywine/search'}">
+    <input type="search" id="name" name="name" placeholder="Search by name">
+</form>
+
 </body>
 </html>

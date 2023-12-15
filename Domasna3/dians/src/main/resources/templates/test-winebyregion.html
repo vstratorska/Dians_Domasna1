@@ -5,7 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+
+<form th:method="post" th:action="@{'/findmywine/search'}">
+    <input type="search" id="name" name="name" placeholder="Search by name">
+</form>
+
 <h1 th:text="${region}"></h1>
+
     <form th:method="post" th:action="@{'/findmywine/region/winery'}">
         <div th:each="w : ${wineries}">
         <input type="radio" id="id" name="id" th:text="${w.getName() } " th:value="${w.getId()}">

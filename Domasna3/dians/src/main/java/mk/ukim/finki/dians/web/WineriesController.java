@@ -40,4 +40,11 @@ public class WineriesController {
         return "test-winery";
     }
 
+    @PostMapping("/search")
+    public String getBySearch(@RequestParam String name, Model model){
+        Optional<Winery> winery = wineriesService.findByName(name);
+        model.addAttribute("winery", winery);
+        return "test-winery";
+    }
+
 }

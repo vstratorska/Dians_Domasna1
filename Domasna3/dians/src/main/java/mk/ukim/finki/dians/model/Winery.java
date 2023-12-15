@@ -20,6 +20,8 @@ public class Winery {
     private String phone;
     private String wp;
     private String menu;
+    private String photo;
+    private String rating;
 
     @Enumerated(EnumType.STRING)
     private Region region;

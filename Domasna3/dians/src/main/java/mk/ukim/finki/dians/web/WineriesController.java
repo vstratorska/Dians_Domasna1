@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/findmywine")
@@ -30,6 +31,13 @@ public class WineriesController {
         model.addAttribute("region",region);
         model.addAttribute("wineries",wineries);
         return "test-winebyregion";
+    }
+
+    @PostMapping("/region/winery")
+    public String getWinery(@RequestParam Long id, Model model){
+        Optional<Winery> winery = wineriesService.findById(id);
+        model.addAttribute("winery", winery);
+        return "test-winery";
     }
 
 }

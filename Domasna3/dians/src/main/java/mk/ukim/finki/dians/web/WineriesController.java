@@ -25,6 +25,13 @@ public class WineriesController {
         return "test-findmywine";
     }
 
+    @GetMapping("/contact")
+    public String getContacts(){
+
+        return "test-contact";
+    }
+
+
     @PostMapping("/region")
     public String wineriesByRegion(@RequestParam Region region, Model model){
         List<Winery> wineries = wineriesService.findByRegion(region);

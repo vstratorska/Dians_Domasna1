@@ -161,6 +161,10 @@
             background-color: #942049;
             width: 87px;
         }
+        input[type="radio"] {
+            display: none;
+            cursor: pointer;
+        }
         .btn-no {
             background-color: black;
             color: white;
@@ -231,14 +235,15 @@
                 <button type="submit" class="btn btn-block and">Search Region</button>
             </form>
             <!-- More buttons for other regions -->
-            <button type="button" class="btn">Skopje</button>
-            <button type="button" class="btn">Northwestern</button>
-            <button type="button" class="btn">Eastern</button>
-            <button type="button" class="btn">Southeastern</button>
-            <button type="button" class="btn">Vardar</button>
-            <button type="button" class="btn">Pelagonija</button>
-            <button type="button" class="btn">Southwestern</button>
-            <button type="button" class="btn">Polog</button>
+            <form th:method="post" th:action="@{'/findmywine/region'}">
+                <div  th:each="r : ${regions}">
+                    <label>
+                        <input class="sidebar button" type="radio" id="reg" name="reg" th:text="${r.name()} " th:value="${r.name()}">
+
+                    </label>
+                </div>
+                <input type="submit" th:value="Submit">
+            </form>
             <!-- More buttons for other regions -->
         </div>
         <div class="col-md-9">

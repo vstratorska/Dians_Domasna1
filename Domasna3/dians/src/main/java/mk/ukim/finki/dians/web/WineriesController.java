@@ -20,7 +20,9 @@ public class WineriesController {
     }
 
     @GetMapping
-    public String getWineryPage(){
+    public String getWineryPage(Model model){
+        List<Region> regions= List.of(Region.values());
+        model.addAttribute("regions", regions);
 
         return "test-findmywine";
     }
@@ -40,9 +42,10 @@ public class WineriesController {
 
 
     @PostMapping("/region")
-    public String wineriesByRegion(@RequestParam Region region, Model model){
-        List<Winery> wineries = wineriesService.findByRegion(region);
-        model.addAttribute("region",region);
+    public String wineriesByRegion(@RequestParam String reg, Model model){
+        List<Winery> wineries = wineriesService.findByRegion(Region.valueOf(reg));
+
+        model.addAttribute("region",reg);
         model.addAttribute("wineries",wineries);
         return "test-winebyregion";
     }

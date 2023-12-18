@@ -242,12 +242,27 @@
 <!--            </form>-->
             <!-- More buttons for other regions -->
             <form th:method="post" th:action="@{'/findmywine/region'}">
-                <div  th:each="r : ${regions}">
-                    <label class="btn ai clickable-label" onclick="changeColor()" id="myLabel">
-                        <input class="btn ai" type="radio" id="reg" name="reg" th:text="${r.name()} " th:value="${r.name()}">
-
+<!--                <div  th:each="r : ${regions}">-->
+                    <label class="btn ai clickable-label" onclick="changeColor(id)" id="id1">
+                        <input class="btn ai" type="radio" id="reg1" name="reg" th:text="${regions.get(0)} " th:value="${regions.get(0)}">
                     </label>
-                </div>
+                <label class="btn ai clickable-label" onclick="changeColor(id)" id="id2" >
+                    <input class="btn ai" type="radio" id="reg2" name="reg" th:text="${regions.get(1)} " th:value="${regions.get(1)}">
+                </label>
+                <label class="btn ai clickable-label" onclick="changeColor(id)" id="id3">
+                <input class="btn ai" type="radio" id="reg3" name="reg" th:text="${regions.get(2)} " th:value="${regions.get(2)}">
+            </label><label class="btn ai clickable-label" onclick="changeColor(id)" id="id4">
+                <input class="btn ai" type="radio" id="reg4" name="reg" th:text="${regions.get(3)} " th:value="${regions.get(3)}">
+            </label><label class="btn ai clickable-label" onclick="changeColor(id)" id="id5">
+                <input class="btn ai" type="radio" id="reg5" name="reg" th:text="${regions.get(4)} " th:value="${regions.get(4)}">
+            </label><label class="btn ai clickable-label" onclick="changeColor(id)" id="id6">
+                <input class="btn ai" type="radio" id="reg6" name="reg" th:text="${regions.get(5)} " th:value="${regions.get(5)}">
+            </label><label class="btn ai clickable-label" onclick="changeColor(id)" id="id7">
+                <input class="btn ai" type="radio" id="reg7" name="reg" th:text="${regions.get(6)} " th:value="${regions.get(6)}">
+            </label><label class="btn ai clickable-label" onclick="changeColor(id)" id="id8">
+                <input class="btn ai" type="radio" id="reg8" name="reg" th:text="${regions.get(7)} " th:value="${regions.get(7)}">
+            </label>
+<!--                </div>-->
                 <input type="submit" th:value="Submit">
             </form>
             <!-- More buttons for other regions -->
@@ -265,8 +280,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script> function changeColor() {
-    var label = document.getElementById('myLabel');
+<script> function changeColor(id) {
+    var label = document.getElementById(id);
     label.style.background = '#c44c71'; // Change this to the desired color
 }</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

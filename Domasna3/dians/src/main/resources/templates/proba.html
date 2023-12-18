@@ -2,9 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find Wines Near Me</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        height: 100vh;
+        width: 100%;
+    }
+
+</style>
 <body>
 
+<div id="map"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap" async defer></script>
+<script src="app.js"></script>
+<script>
+    let map;
+
+    function initMap() {
+        // Initialize the map
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 0, lng: 0 },
+            zoom: 15
+        });
+
+        // Try HTML5 geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Center the map on the user's location
+                    map.setCenter(pos);
+
+                    // Add a marker at the user's location
+                    new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        title: 'Your Location'
+                    });
+
+                    // Call a function to fetch and display nearby wineries
+                    fetchNearbyWineries(pos);
+                },
+                () => {
+                    handleLocationError(true);
+                }
+            );
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false);
+        }
+    }
+
+    function handleLocationError(browserHasGeolocation) {
+        const errorMessage = browserHasGeolocation
+            ? 'Error: The Geolocation service failed.'
+            : 'Error: Your browser doesn\'t support geolocation.';
+        console.error(errorMessage);
+    }
+
+    function fetchNearbyWineries(location) {
+        // Here, you can implement code to fetch nearby wineries from a database or an API
+        // For simplicity, let's assume you have an API endpoint that returns nearby wineries
+
+        // Example API endpoint (replace with your actual endpoint)
+        const apiEndpoint = 'https://api.example.com/nearby-wineries';
+
+        // Fetch nearby wineries using the API
+        fetch(apiEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                latitude: location.lat,
+                longitude: location.lng
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Process the data and display wineries on the map
+                displayWineriesOnMap(data);
+            })
+            .catch(error => {
+                console.error('Error fetching nearby wineries:', error);
+            });
+    }
+
+    function displayWineriesOnMap(wineries) {
+        // Here, you can add markers for each nearby winery on the map
+        // For simplicity, let's assume each winery has a latitude and longitude
+
+        wineries.forEach(winery => {
+            const wineryMarker = new google.maps.Marker({
+                position: { lat: winery.latitude, lng: winery.longitude },
+                map: map,
+                title: winery.name
+            });
+
+            // You may customize the marker further, such as adding an info window
+            // with additional information about the winery
+            const infowindow = new google.maps.InfoWindow({
+                content: `<strong>${winery.name}</strong><br>${winery.address}`
+            });
+
+            wineryMarker.addListener('click', () => {
+                infowindow.open(map, wineryMarker);
+            });
+        });
+    }
+
+</script>
 </body>
 </html>

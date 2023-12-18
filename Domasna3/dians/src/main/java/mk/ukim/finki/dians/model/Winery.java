@@ -19,6 +19,7 @@ public class Winery {
     private String location;
     private String phone;
     private String wp;
+    private String hours;
     private String menu;
     private String photo;
     private String rating;

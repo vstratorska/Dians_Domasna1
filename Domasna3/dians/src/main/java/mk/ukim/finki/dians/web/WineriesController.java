@@ -30,6 +30,13 @@ public class WineriesController {
 
         return "test-contact";
     }
+    @GetMapping("/all")
+    public String getAllWineries(Model model){
+
+        List<Winery> wineries=wineriesService.findAll();
+        model.addAttribute("wineries", wineries);
+        return "test-all";
+    }
 
 
     @PostMapping("/region")

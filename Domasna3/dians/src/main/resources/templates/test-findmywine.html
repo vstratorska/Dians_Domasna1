@@ -29,7 +29,7 @@
 
         }
 
-        .sidebar button {
+        .ai {
             width: 100%;
             border-radius: 20px;
             margin-bottom: 0.5rem;
@@ -99,6 +99,7 @@
         input#region {
             margin-bottom: 19px !important;
         }
+
         .form-control {
             display: block;
             width: 100%;
@@ -165,6 +166,7 @@
             display: none;
             cursor: pointer;
         }
+
         .btn-no {
             background-color: black;
             color: white;
@@ -172,6 +174,10 @@
         }
         body{
             background: #f6e1e1;
+        }
+        #myLabel {
+            background-color: #942049; /* Initial color */
+            cursor: pointer;
         }
 
         .winery-details {
@@ -230,15 +236,15 @@
                 </form>
             </div>
             <!-- Region buttons -->
-            <form th:method="post" th:action="@{'/findmywine/region'}">
-                <input type="text" class="form-control mb-2" id="region" name="region" placeholder="Enter region">
-                <button type="submit" class="btn btn-block and">Search Region</button>
-            </form>
+<!--            <form th:method="post" th:action="@{'/findmywine/region'}">-->
+<!--                <input type="text" class="form-control mb-2" id="region" name="region" placeholder="Enter region">-->
+<!--&lt;!&ndash;                <button type="submit" class="btn btn-block and">Search Region</button>&ndash;&gt;-->
+<!--            </form>-->
             <!-- More buttons for other regions -->
             <form th:method="post" th:action="@{'/findmywine/region'}">
                 <div  th:each="r : ${regions}">
-                    <label>
-                        <input class="sidebar button" type="radio" id="reg" name="reg" th:text="${r.name()} " th:value="${r.name()}">
+                    <label class="btn ai clickable-label" onclick="changeColor()" id="myLabel">
+                        <input class="btn ai" type="radio" id="reg" name="reg" th:text="${r.name()} " th:value="${r.name()}">
 
                     </label>
                 </div>
@@ -259,7 +265,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script> function changeColor() {
+    var label = document.getElementById('myLabel');
+    label.style.background = '#c44c71'; // Change this to the desired color
+}</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script>
     $(document).ready(function() {
